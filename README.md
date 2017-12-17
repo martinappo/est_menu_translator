@@ -2,9 +2,13 @@
 
 ## needed python packages
 
+conda install -c conda-forge google-api-python-client
+
 numpy
 
 pytesseract
+
+pip install pytesseract
 
 cv2
 

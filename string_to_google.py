@@ -20,11 +20,16 @@ def search_google_image(search_term):
     response = requests.get(url, params={'q': search_term, 'num': 1, 'start': 1, 'imgSize': "medium",
                                      'searchType': "image", 'key': 'AIzaSyCHiNZOR3jks2sguztp3xnLoH1plzURkow', 'cx' : '012763076801589293049:rxhgz0ebbac'})
     data = response.json()
-    img_link = data['items'][0]['link']
-    print(img_link)
-    urllib.request.urlretrieve(img_link, "{}.jpg".format(search_term))
+    try:
+        img_link = data['items'][0]['link']
+        print(img_link)
+        urllib.request.urlretrieve(img_link, "{}.jpg".format(search_term))
+        return (img_link)
 
-    return(img_link)
+    except KeyError:
+        print('No image found for {}'.format(search_term))
+        return search_google_image('no image found')
+
 
 
 

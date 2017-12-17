@@ -7,7 +7,7 @@ import numpy as np
 
 class ImageToStringConverter():
     def __init__(self):
-        pytesseract.pytesseract.tesseract_cmd = 'C:\\Users\\Martin\\Tesseract-OCR\\tesseract.exe' #TODO create conf file or input parameter
+        pytesseract.pytesseract.tesseract_cmd = 'C:\\Tesseract-OCR\\tesseract.exe' #TODO create conf file or input parameter
         pass
 
     def convert_to_text(self, image):

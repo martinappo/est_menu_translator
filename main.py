@@ -1,7 +1,10 @@
 import cv2
 from image_to_string_converter import ImageToStringConverter
+import string_to_google as g
+from translator import GoogleTranslator
 
-cap = cv2.VideoCapture(1)
+
+cap = cv2.VideoCapture(0)
 
 if (cap.isOpened() == False):
     print("Error opening video stream or file")
@@ -20,7 +23,20 @@ while (cap.isOpened()):
         break
 
 converter = ImageToStringConverter()
-print converter.convert_to_text(frame)
+menustring = (converter.convert_to_text(frame))
+print (menustring)
+
+lines = menustring.split('\n')
+for line in lines:
+
+    translator= GoogleTranslator()
+    translated_text= translator.translate(line)
+
+    print(translated_text)
+
+    g.search_google_image(translated_text)
+
+
 
 cap.release()
 cv2.destroyAllWindows()

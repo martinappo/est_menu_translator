@@ -2,7 +2,7 @@ import cv2
 from image_to_string_converter import ImageToStringConverter
 import string_to_google as g
 from translator import GoogleTranslator
-
+import re
 
 cap = cv2.VideoCapture(0)
 
@@ -30,11 +30,12 @@ lines = menustring.split('\n')
 for line in lines:
 
     translator= GoogleTranslator()
+    line = re.sub(r'[^A-Za-z0-9]+', ' ', line)
     translated_text= translator.translate(line)
 
     print(translated_text)
 
-    g.search_google_image(translated_text)
+    g.search_google_image(translated_text + ' food')
 
 
 

@@ -6,6 +6,7 @@ conda install -c conda-forge google-api-python-client
 
 numpy
 
+googletrans
 pytesseract
 
 pip install pytesseract

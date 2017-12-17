@@ -1,6 +1,6 @@
 import urllib.request as request
-import simplejson
 import urllib
+import re
 
 try:
     import Image
@@ -12,7 +12,7 @@ try:
 except ImportError:
     from io import StringIO
 
-import json, requests
+import requests
 
 def search_google_image(search_term):
 
@@ -23,7 +23,9 @@ def search_google_image(search_term):
     try:
         img_link = data['items'][0]['link']
         print(img_link)
-        urllib.request.urlretrieve(img_link, "{}.jpg".format(search_term))
+        img_name = search_term.strip().replace(" ", "")
+        img_name = re.sub('[^A-Za-z0-9]+', '', img_name)[:10]
+        urllib.request.urlretrieve(img_link, "{}.jpg".format(img_name))
         return (img_link)
 
     except KeyError:

@@ -3,6 +3,7 @@ from image_to_string_converter import ImageToStringConverter
 import string_to_google as g
 import translated_menu_builder as menu_buil
 from translator import GoogleTranslator
+import image_preprocessor
 import re
 
 cap = cv2.VideoCapture(0)
@@ -23,8 +24,16 @@ while (cap.isOpened()):
     else:
         break
 
+corrected_img = image_preprocessor.correct_image(frame)
+
+# show the output image
+cv2.imshow("Corrected img", corrected_img)
+cv2.waitKey(0)
+
+
+
 converter = ImageToStringConverter()
-menustring = (converter.convert_to_text(frame))
+menustring = (converter.convert_to_text(corrected_img))
 
 print ("String from image: {}".format(menustring))
 

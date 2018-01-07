@@ -1,5 +1,7 @@
 # est_menu_translator
 
+Python Version 3.6
+
 ## needed python packages
 
 conda install -c conda-forge google-api-python-client
